@@ -3,7 +3,7 @@ export class ProjectController {
     static showAll(req:any, res:unknown)
     {
         // @ts-ignore
-        res.send('Show all projects')
+        res.send('show all projects')
     }
 
     static show(req:any, res:unknown)
@@ -27,6 +27,10 @@ export class ProjectController {
         // @ts-ignore
         res.send('Delete Project')
     }
+    static options(req:any, res:unknown)
+    {
+        // @ts-ignore
+        res.header('Allow', "GET, POST, PATCH, DELETE").send();
+    }
 }
 
-// export {showAll, show, create, update, remove }
