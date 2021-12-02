@@ -23,7 +23,6 @@ export class Application {
         localPort: 27017 //or anything else unused you want
     } : null;
 
-
     constructor() {
         app.use(express.json());
         app.use(express.urlencoded({extended: false}));
@@ -48,7 +47,7 @@ export class Application {
         });
 
         if (this.dev) {
-            tunnel(this.sshTunnelConfig, (error:any, server:any) => {
+            tunnel(this.sshTunnelConfig, (error:any) => {
                 if(error) {
                     console.log("SSH connection error: ", error);
                 }
