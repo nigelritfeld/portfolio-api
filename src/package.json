@@ -2,12 +2,12 @@
   "name": "portfolio-api",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "index.js",
   "directories": {
     "test": "src/test"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "../node_modules/.bin/nodemon index.js",
     "test": "echo \\\"Error: no src/test specified\\\" && exit 1"
   },
   "repository": {
