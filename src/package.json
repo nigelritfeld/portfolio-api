@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "types": "node",
   "directories": {
     "test": "src/test"
   },
   "scripts": {
-    "start": "../node_modules/.bin/nodemon index.js",
+    "start": "npm install && nodemon index.js",
     "test": "echo \\\"Error: no src/test specified\\\" && exit 1"
   },
   "repository": {
