@@ -22,6 +22,7 @@ export class Application {
         localHost: '127.0.0.1',
         localPort: 27017 //or anything else unused you want
     } : null;
+
     router = new MainRouter().router
     constructor() {
         app.use(express.json());
