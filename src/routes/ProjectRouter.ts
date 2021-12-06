@@ -1,6 +1,5 @@
 import { ResourceRouter } from './ResourceRouter.js';
 import { ProjectController } from "../app/controllers/ProjectController.js";
-import {NextFunction} from "express";
 
 /**
  * Projects router
@@ -18,13 +17,7 @@ export default class ProjectRouter extends ResourceRouter
     }
 
     constructor() {
-
         super();
-
-        this.router.use((req, res, next:NextFunction) => {
-            req.headers.accept === "application/json" ? next() : res.status(404).send('Missing accept header "application/json"');
-        })
-        ProjectRouter.routes(ProjectRouter.routeCallbacks);
     }
 
     // getInstance()/**/
