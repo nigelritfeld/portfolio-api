@@ -28,7 +28,7 @@ export class Application {
         app.use(express.json());
         app.use(express.urlencoded({extended: false}));
         app.use('/',this.router)
-        const port = process.env.APP === 'production' ? process.env.APP_PORT : 3000;
+        const port = process.env.APP === 'production' ? process.env.APP_PORT : 3001;
         mongoose.connection.on('connecting', () => {
             console.log('connecting')
             console.log(mongoose.connection.readyState); //logs 2
