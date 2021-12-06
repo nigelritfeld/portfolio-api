@@ -4,17 +4,17 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
     "target": "es6",
     "removeComments": true,
     "sourceMap": true,
     "esModuleInterop": true,
-//    "module": "ES6",
     "module": "commonjs",
     "outDir": "./build",
     "moduleResolution": "node"
-//    "allowSyntheticDefaultImports": true
   },
   "include": [
-    "src/**/*"
+    "src/",
+    "src/package.json"
   ]
 }
