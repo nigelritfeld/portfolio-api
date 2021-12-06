@@ -7,16 +7,18 @@ import { ProjectController } from "../app/controllers/ProjectController.js";
  */
 export default class ProjectRouter extends ResourceRouter
 {
+    static routeCallbacks = {
+        'index' : ProjectController.showAll,
+        'details' : ProjectController.show,
+        'create' : ProjectController.create,
+        'update' : ProjectController.update,
+        'delete' : ProjectController.remove,
+        'options' : ProjectController.options,
+    }
 
     constructor() {
         super();
-
-        this.router
-            .get('/',(req: any, res:any) => ProjectController.showAll(req, res))
-            .get('/:id',(req: any, res:any) => ProjectController.show(req, res))
-            .post('/create',(req:any, res:any) => ProjectController.create(req, res))
-            .patch('/update',(req:any, res:any) => ProjectController.update(req, res))
-            .delete('/delete',(req:any, res:any) => ProjectController.remove(req, res))
     }
 
+    // getInstance()/**/
 }
