@@ -1,11 +1,12 @@
 import {ResourceRouter} from "./ResourceRouter";
 import ProjectRouter from "./ProjectRouter";
-import express from "express";
+import {accept, contentType} from "../app/middlewares/headersMiddleware.js";
 
 export class MainRouter extends ResourceRouter{
     constructor() {
         super();
-        let newRouter = express.Router()
+        this.router.use(accept)
+        this.router.use(contentType)
         this.router.use('/project' , ResourceRouter.routes(ProjectRouter.routeCallbacks))
     }
 }
