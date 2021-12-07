@@ -20,5 +20,4 @@ export default class ProjectRouter extends ResourceRouter
         super();
     }
 
-    // getInstance()/**/
 }
