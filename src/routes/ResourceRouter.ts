@@ -1,5 +1,4 @@
 import express, {Router} from "express";
-import {ProjectController} from "../app/controllers/ProjectController";
 export class ResourceRouter {
     router: Router = express.Router()
 
