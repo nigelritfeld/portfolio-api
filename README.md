@@ -1,4 +1,4 @@
-# portfolio-api
+# Portfolio API
 This repo contains the source code of my Portfolio API
 
 ## API Checker
