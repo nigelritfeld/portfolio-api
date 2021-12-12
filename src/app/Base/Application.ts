@@ -1,22 +1,20 @@
-import {MainRouter} from "./routes/MainRouter";
-
-require('dotenv').config();
-const mongoose = require('mongoose');
-const tunnel = require('tunnel-ssh');
-import express from "express";
-
-const app = express();
+import {MainRouter} from "../../routes/MainRouter"
+require('dotenv').config()
+const mongoose = require('mongoose')
+const tunnel = require('tunnel-ssh')
+import express from "express"
+const app = express()
 
 export class Application {
 
-    dev: boolean = process.env.NODE_ENV !== 'production';
-    port = process.env.APP === 'production' ? process.env.APP_PORT : 3001;
+    dev: boolean = process.env.NODE_ENV !== 'production'
+    port = process.env.APP === 'production' ? process.env.APP_PORT : 3001
     sshTunnelConfig: any = this.dev ? {
         // agent: process.env.SSH_AUTH_SOCK,
         user:process.env.TUNNELSSH_USER,
         password:process.env.TUNNELSSH_PASSWORD,
         // privateKey: require('fs').readFileSync('./id_rsa.ppk'),
-        host: '145.24.222.24', //IP adress of VPS which is the SSH server
+        host: '145.24.222.24', //IP address of VPS which is the SSH server
         port: 22,
         dstHost: '127.0.0.1',
         dstPort: 27017, //or 27017 or something like that
@@ -27,12 +25,12 @@ export class Application {
         if(error) {
             console.log("SSH connection error: ", error);
         }
-        mongoose.connect(`mongodb://${process.env.DEV_DB_USERNAME}:${process.env.DEV_DB_PASSWORD}@127.0.0.1:27017/${process.env.DEV_DB_NAME}`);
-    }): mongoose.connect(`mongodb://${process.env.DEV_DB_USERNAME}:${process.env.DEV_DB_PASSWORD}@127.0.0.1:27017/${process.env.DEV_DB_NAME}`);;
+        mongoose.connect(`mongodb://${process.env.DEV_DB_USERNAME}:${process.env.DEV_DB_PASSWORD}@127.0.0.1:27017/${process.env.DEV_DB_NAME}`)
+    }): mongoose.connect(`mongodb://${process.env.DEV_DB_USERNAME}:${process.env.DEV_DB_PASSWORD}@127.0.0.1:27017/${process.env.DEV_DB_NAME}`)
     router = new MainRouter().router
     constructor() {
-        app.use(express.json());
-        app.use(express.urlencoded({extended: false}));
+        app.use(express.json())
+        app.use(express.urlencoded({extended: false}))
         app.use('/',this.router)
         mongoose.connection.on('connecting', () => {
             console.log('connecting')

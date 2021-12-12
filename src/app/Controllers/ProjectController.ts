@@ -29,6 +29,7 @@ export class ProjectController {
                 console.log('succes')
                 // @ts-ignore
                 res.status(200)
+                    .header("Content-Type", "application/json")
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
                     .json(project)

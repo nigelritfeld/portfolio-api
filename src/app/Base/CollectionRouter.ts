@@ -1,5 +1,5 @@
 import express, {Router} from "express";
-import {accept, contentType} from "../app/middlewares/headerMiddleware";
+import {accept, contentType} from "../Middlewares/headerMiddleware";
 export class  CollectionRouter {
     router: Router = express.Router()
 

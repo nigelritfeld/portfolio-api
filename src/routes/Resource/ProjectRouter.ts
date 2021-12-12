@@ -1,5 +1,5 @@
-import { ResourceRouter } from './ResourceRouter.js';
-import { ProjectController } from "../app/Controllers/ProjectController.js";
+import { ResourceRouter } from '../../app/Base/ResourceRouter.js';
+import { ProjectController } from "../../app/Controllers/ProjectController.js";
 
 /**
  * Projects router
