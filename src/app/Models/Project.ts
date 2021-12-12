@@ -108,7 +108,7 @@ export default class Project extends Model{
                     },
                 }
             }
-        } catch (e) {
+        } catch (e:any) {
             // @ts-ignore
             res.status(500).json({
                 statusCode: 500,
