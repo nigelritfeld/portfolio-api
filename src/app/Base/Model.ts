@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 export default abstract class Model {
     static opts: any = {toJSON: {
             virtuals: true,
