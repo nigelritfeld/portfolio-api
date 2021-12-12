@@ -56,7 +56,7 @@ export class ProjectController {
             let project = await Project.Model.findOneAndUpdate({_id: req.params.id}, req.body)
             // @ts-ignore
             res.status(202).json(project)
-        } catch (e) {
+        } catch (e:any) {
             // @ts-ignore
             res.status(400).json({
                 statusCode: 400,
