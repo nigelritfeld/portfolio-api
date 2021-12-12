@@ -1,5 +1,5 @@
 import { ResourceRouter } from './ResourceRouter.js';
-import { ProjectController } from "../app/controllers/ProjectController.js";
+import { ProjectController } from "../app/Controllers/ProjectController.js";
 
 /**
  * Projects router
@@ -8,10 +8,11 @@ import { ProjectController } from "../app/controllers/ProjectController.js";
 export default class ProjectRouter extends ResourceRouter
 {
     static routeCallbacks = {
-        'index' : ProjectController.showAll,
+        'index' : ProjectController.show,
         'details' : ProjectController.show,
         'create' : ProjectController.create,
         'update' : ProjectController.update,
+        'replace' : ProjectController.replace,
         'delete' : ProjectController.remove,
         'options' : ProjectController.options,
     }
@@ -20,5 +21,4 @@ export default class ProjectRouter extends ResourceRouter
         super();
     }
 
-    // getInstance()/**/
 }

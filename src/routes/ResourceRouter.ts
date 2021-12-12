@@ -1,18 +1,21 @@
 import express, {Router} from "express";
-import {ProjectController} from "../app/controllers/ProjectController";
+import {accept, contentType} from "../app/middlewares/headerMiddleware";
 export class ResourceRouter {
     router: Router = express.Router()
 
     static routes(callbacks: any, router = express.Router())
     {
+        router.use(accept)
+        router.use(contentType)
         return router
-            .get('/',(req: any, res:any) => callbacks.index(req, res))
             .options('/',(req:any, res:any) => callbacks.options(req, res))
-            .get('/:id',(req: any, res:any) => callbacks.details(req, res))
             .options('/:id',(req: any, res:any) => callbacks.options(req, res))
-            .post('/create',(req:any, res:any) => callbacks.create(req, res))
-            .patch('/update',(req:any, res:any) => callbacks.update(req, res))
-            .delete('/delete',(req:any, res:any) => callbacks.delete(req, res))
+            .get('/',(req: any, res:any) => callbacks.index(req, res))
+            .get('/:id',(req: any, res:any) => callbacks.details(req, res))
+            .post('/',(req:any, res:any) => callbacks.create(req, res))
+            .patch('/:id',(req:any, res:any) => callbacks.update(req, res))
+            .put('/:id',(req:any, res:any) => callbacks.replace(req, res))
+            .delete('/:id',(req:any, res:any) => callbacks.delete(req, res))
     }
 
 }
