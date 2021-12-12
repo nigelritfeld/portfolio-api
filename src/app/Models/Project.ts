@@ -3,7 +3,7 @@ import {ProjectInterface} from "../Interfaces/Project";
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
-import Model from "./Model.js";
+import Model from "../Base/Model.js";
 import Virtual from "../Virtuals/Virtual.js";
 
 export default class Project extends Model{
@@ -52,68 +52,10 @@ export default class Project extends Model{
     }
 
     /**
-     * Object method that resolves to the use mongoose save method
+     * List all resources in collection
+     * @param req
+     * @param res
      */
-    // @ts-ignore
-    async save(req:any,res:any): Promise<void> {
-
-        try {
-            await this.model.save()
-            // @ts-ignore
-            res.status(201)
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-                .json(this.model)
-        }catch (e) {
-            // @ts-ignore
-            res
-                .status(400)
-                .json({
-                    statusCode:400,
-                    message: e
-                })
-        }
-
-    }
-
-    async delete(req:any,res:any): Promise<void> {
-
-        try {
-            console.log(`Trying to delete ${req.params.id}`)
-            await this.model.findByIdAndRemove(req.params.id)
-            // @ts-ignore
-            res.status(201)
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-                .json(this.model)
-        }catch (e) {
-            // @ts-ignore
-            res
-                .status(400)
-                .json({
-                    statusCode:400,
-                    message: e
-                })
-        }
-
-    }
-
-    get data() {
-        return this._data;
-    }
-
-    set data(value) {
-        this._data = value;
-    }
-
-    get model(): any {
-        return this._model
-    }
-
-    set model(value) {
-        this._model = value;
-    }
-
     static async all(req: any, res:any) {
         try {
             let totalPages, prevPage, nextPage
@@ -173,6 +115,78 @@ export default class Project extends Model{
                 message: e.message,
             })
         }
+    }
+
+    /**
+     * Object method that resolves to the use mongoose save method
+     */
+    // @ts-ignore
+    async save(req:any,res:any): Promise<void> {
+
+        try {
+            console.log("Trying to save model:")
+            console.log(this.model)
+            await this.model.save()
+            console.log(`Model ${this.model.title} is saved to mongodb`)
+            // @ts-ignore
+            res.status(201)
+                .header("Content-Type", "application/json")
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+                .json(this.model)
+        }catch (e) {
+            // @ts-ignore
+            res
+                .status(400)
+                .json({
+                    statusCode:400,
+                    message: e
+                })
+        }
+
+    }
+
+    /**
+     * Deletes resource
+     * @param req
+     * @param res
+     */
+    async delete(req:any,res:any): Promise<void> {
+
+        try {
+            console.log(`Trying to delete ${req.params.id}`)
+            await this.model.findByIdAndRemove(req.params.id)
+            // @ts-ignore
+            res.status(201)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+                .json(this.model)
+        }catch (e) {
+            // @ts-ignore
+            res
+                .status(400)
+                .json({
+                    statusCode:400,
+                    message: e
+                })
+        }
+
+    }
+
+    get data() {
+        return this._data;
+    }
+
+    set data(value) {
+        this._data = value;
+    }
+
+    get model(): any {
+        return this._model
+    }
+
+    set model(value) {
+        this._model = value;
     }
 
 }

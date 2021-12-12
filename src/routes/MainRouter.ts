@@ -1,25 +1,8 @@
-import {BaseRouter} from "./BaseRouter";
-import {ResourceRouter} from "./ResourceRouter";
-import {CollectionRouter} from "./CollectionRouter";
-import ProjectRouter from "./ProjectRouter";
-import ProjectCollectionRouter from "./ProjectCollectionRouter";
-const swaggerUi = require('swagger-ui-express');
-const swaggerOptions = {
-    swaggerDefinition: {
-        info: {
-            version: "1.0.0",
-            title: "Customer API",
-            description: "Customer API Information",
-            contact: {
-                name: "Amazing Developer"
-            },
-            servers: ["http://localhost:5000"]
-        }
-    },
-    // ['.routes/*.js']
-    apis: ["app.js"]
-};
-
+import {BaseRouter} from "../app/Base/BaseRouter";
+import {ResourceRouter} from "../app/Base/ResourceRouter";
+import {CollectionRouter} from "../app/Base/CollectionRouter";
+import ProjectRouter from "./Resource/ProjectRouter";
+import ProjectCollectionRouter from "./Collection/ProjectCollectionRouter";
 
 /**
  * Main router class
@@ -32,7 +15,11 @@ export class MainRouter extends BaseRouter{
         this.router.get('/', function (req, res){
             res
                 .status(200)
-                .json({home: "ddd"})
+                .json({
+                    Message: "Portfolio API",
+                    Author: "Nigel Ritfeld",
+                    Github: "https://github.com/nigelritfeld",
+                })
         })
     }
 }

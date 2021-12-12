@@ -1,3 +1,5 @@
+require("dotenv").config({ path: process.env.PWD + '/.env' })
+
 export default class Virtual
 {
     /**
@@ -8,10 +10,10 @@ export default class Virtual
         return {
             self: {
                 // @ts-ignore
-                href: `http://67fa-86-111-208-158.ngrok.io/project/${this.id}`,
+                href: `http://${process.env.HOST}/project/${this.id}`,
             },
             collection: {
-                href: `http://67fa-86-111-208-158.ngrok.io/projects`
+                href: `http://${process.env.HOST}/projects`
             },
         };
     }
